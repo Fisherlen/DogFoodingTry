@@ -2,12 +2,10 @@
 Transformer05_02PrepareData_中文小说
 备注：
     按照张老师WayLand抖音LLM长视频 11课抄写下来
-    没跑通，不知道错在哪里，以后再看如何进行，使用另外一段来自GPT4已调通代码替换
+    已修复：1. 删除无效注释 2. 修复函数调用参数错误
                     By: Fisherlen Yu
                     Date: 2024/4/28
 """
-
-没跑通2024.4.28
 
 import os
 import sys
@@ -32,7 +30,7 @@ def download_file(url, save_path):
 
 # 将文件夹下所有txt文件合并到一个txt文件
 def find_txt_files(directory):
-    return glob.glob(os.path.join(directory, '*.txt'), recursive= True)
+    return glob.glob(os.path.join(directory, '**', '*.txt'), recursive=True)
 
 def concatenate_txt_files(directory, output_file):
     txt_files = find_txt_files(directory)
@@ -44,8 +42,5 @@ def concatenate_txt_files(directory, output_file):
 directory = 'data'
 output_file = 'data/scifi2.txt'
 
-# find text files
-text_files = find_txt_files(directory)
-
 # concatenate all texts into one
-concatenate_txt_files(text_files, output_file)
+concatenate_txt_files(directory, output_file)
